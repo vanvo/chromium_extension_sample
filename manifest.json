@@ -1,0 +1,25 @@
+{
+    "manifest_version": 3,
+    "name": "Simple API Caller",
+    "version": "1.0",
+    "description": "A simple extension to call APIs and show the response.",
+    "permissions": ["storage", "activeTab", "scripting"],
+    "host_permissions": ["https://api.example.com/*"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+      }
+    },
+    "icons": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    },
+    "update_url": "https://raw.githubusercontent.com/vanvo/chromium_extension_sample/main/updates.xml"
+  }
