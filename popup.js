@@ -12,6 +12,9 @@ document.getElementById('apiForm').addEventListener('submit', async (event) => {
         <p>Estimated Age: ${data.age}</p>
         <p>Count: ${data.count}</p>
       `;
+      
+      console.log("Response data");
+      console.log(data);
     } catch (error) {
       responseContainer.innerHTML = `<p>Error: ${error.message}</p>`;
     }
