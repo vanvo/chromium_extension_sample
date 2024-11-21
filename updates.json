@@ -1,0 +1,5 @@
+{
+    "version": "1.1",
+    "update_url": "https://github.com/vanvo/chromium_extension_sample/raw/refs/heads/main/dist.zip",
+    "force_update": false
+}
