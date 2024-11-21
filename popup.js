@@ -22,6 +22,8 @@ document.getElementById('apiForm').addEventListener('submit', async (event) => {
   document.addEventListener("DOMContentLoaded", async () => {
     const currentVersion = chrome.runtime.getManifest().version;
     const responseContainer = document.getElementById("responseContainer");
+    const inputName = document.getElementById("inputName"); // Lấy input name
+    
   
     // Hiển thị phiên bản hiện tại
     // responseContainer.innerHTML = `Phiên bản hiện tại: ${currentVersion}`;
@@ -39,6 +41,21 @@ document.getElementById('apiForm').addEventListener('submit', async (event) => {
       updateLink.style.color = "blue";
       responseContainer.appendChild(updateLink); // Chèn link vào responseContainer
     }
+
+    // Lấy giá trị `name` từ local storage và hiển thị trong input
+  chrome.storage.local.get("savedName", (result) => {
+    if (result.savedName) {
+      inputName.value = result.savedName; // Hiển thị giá trị lưu trữ
+    }
+  });
+
+  // Lưu giá trị `name` khi người dùng nhập
+  inputName.addEventListener("change", () => {
+    const name = inputName.value.trim();
+    chrome.storage.local.set({ savedName: name }, () => {
+      console.log(`Name "${name}" has been saved.`);
+    });
+  });
   });
   
   // Hàm kiểm tra phiên bản mới
