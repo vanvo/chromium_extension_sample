@@ -48,11 +48,18 @@ document.getElementById('apiForm').addEventListener('submit', async (event) => {
     }
 
     // Lấy giá trị `name` từ local storage và hiển thị trong input
-  chrome.storage.local.get(["username"], (result) => {
-    if (result.username) {
-      inputName.value = result.username; // Hiển thị giá trị lưu trữ
-      console.log(`Name "${result.username}" has loaded`);
-    }
+  // chrome.storage.local.get(["username"], (result) => {
+  //   if (result.username) {
+  //     inputName.value = result.username; // Hiển thị giá trị lưu trữ
+  //     console.log(`Name "${result.username}" has loaded`);
+  //   }
+  // });
+
+  // Lấy dữ liệu từ storage và hiển thị các hàng
+  chrome.storage.local.get("names", (result) => {
+    const names = result.names || [];
+    const randomElement = names[Math.floor(Math.random() * names.length)];
+    inputName.value = randomElement
   });
 
   // Lưu giá trị `name` khi người dùng nhập

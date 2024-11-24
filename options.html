@@ -9,19 +9,53 @@
       font-family: Arial, sans-serif;
       margin: 20px;
     }
-    label {
-      display: block;
+    .row {
+      display: flex;
+      align-items: center;
       margin-bottom: 10px;
     }
-    input[type="text"], button {
+    .row input {
+      flex: 1;
+      padding: 5px;
+      margin-right: 10px;
+    }
+    .row button {
+      padding: 5px 10px;
+      background-color: red;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .row button:hover {
+      background-color: darkred;
+    }
+    #addRowBtn {
+      padding: 5px 10px;
+      background-color: green;
+      color: white;
+      border: none;
+      cursor: pointer;
       margin-bottom: 20px;
+    }
+    #addRowBtn:hover {
+      background-color: darkgreen;
+    }
+    #saveBtn {
+      padding: 10px 20px;
+      background-color: blue;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    #saveBtn:hover {
+      background-color: darkblue;
     }
   </style>
 </head>
 <body>
   <h1>Extension Settings</h1>
-  <label for="username">Your Name:</label>
-  <input type="text" id="username" placeholder="Enter your name" />
+  <div id="rowsContainer"></div>
+  <button id="addRowBtn">+ Add Row</button>
   <button id="saveBtn">Save</button>
   <div id="status"></div>
   <script src="options.js"></script>
