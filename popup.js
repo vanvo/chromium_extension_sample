@@ -93,13 +93,25 @@ document.getElementById('apiForm').addEventListener('submit', async (event) => {
   
   // Hàm so sánh phiên bản
   function compareVersions(newVersion, currentVersion) {
-    const newParts = newVersion.split(".").map(Number);
-    const currentParts = currentVersion.split(".").map(Number);
-  
-    for (let i = 0; i < newParts.length; i++) {
-      if ((newParts[i] || 0) > (currentParts[i] || 0)) return true;
-      if ((newParts[i] || 0) < (currentParts[i] || 0)) return false;
+    // Kiểm tra đầu vào
+    if (typeof newVersion !== 'string' || typeof currentVersion !== 'string') {
+      throw new Error('Both versions must be strings');
     }
   
+    const newParts = newVersion.split('.').map(Number);
+    const currentParts = currentVersion.split('.').map(Number);
+  
+    // Xác định độ dài lớn nhất của hai mảng
+    const maxLength = Math.max(newParts.length, currentParts.length);
+  
+    for (let i = 0; i < maxLength; i++) {
+      const newPart = newParts[i] || 0;
+      const currentPart = currentParts[i] || 0;
+  
+      if (newPart > currentPart) return true;
+      if (newPart < currentPart) return false;
+    }
+  
+    // Nếu tất cả các phần tử đều bằng nhau
     return false;
   }
