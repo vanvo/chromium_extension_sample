@@ -19,6 +19,11 @@ document.getElementById('apiForm').addEventListener('submit', async (event) => {
       responseContainer.innerHTML = `<p>Error: ${error.message}</p>`;
     }
   });
+
+  document.getElementById("settingsBtn").addEventListener("click", () => {
+    chrome.runtime.openOptionsPage();
+  });
+
   document.addEventListener("DOMContentLoaded", async () => {
     const currentVersion = chrome.runtime.getManifest().version;
     const responseContainer = document.getElementById("responseContainer");
@@ -43,16 +48,17 @@ document.getElementById('apiForm').addEventListener('submit', async (event) => {
     }
 
     // Lấy giá trị `name` từ local storage và hiển thị trong input
-  chrome.storage.local.get("savedName", (result) => {
-    if (result.savedName) {
-      inputName.value = result.savedName; // Hiển thị giá trị lưu trữ
+  chrome.storage.local.get(["username"], (result) => {
+    if (result.username) {
+      inputName.value = result.username; // Hiển thị giá trị lưu trữ
+      console.log(`Name "${result.username}" has loaded`);
     }
   });
 
   // Lưu giá trị `name` khi người dùng nhập
   inputName.addEventListener("change", () => {
     const name = inputName.value.trim();
-    chrome.storage.local.set({ savedName: name }, () => {
+    chrome.storage.local.set({ username: name }, () => {
       console.log(`Name "${name}" has been saved.`);
     });
   });
